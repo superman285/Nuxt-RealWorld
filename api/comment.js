@@ -8,21 +8,23 @@ const getComments = slug => {
   })
 }
 
-const addComment = ({ slug, comment}) => {
+const addComment = ({ slug, comment: { body } }) => {
   return request({
     method: 'POST',
     url: `/api/articles/${slug}/comments`,
     data: {
-      comment
+      comment: {
+        body
+      }
     }
   })
 }
 
 // authentication required
-const deleteComment = (slug) => {
+const deleteComment = (slug, id) => {
   return request({
     method: 'DELETE',
-    url: `/api/articles/${slug}`
+    url: `/api/articles/${slug}/comments/${id}`
   })
 }
 
